@@ -2,14 +2,14 @@
 
 let numberOfFilms;
 
-function start(){
+function start() {
 	numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
 
 	while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
 		numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
 	}
 }
-start ();
+// start();
 
 const personalMovieDB = {
 	count: numberOfFilms,
@@ -20,11 +20,10 @@ const personalMovieDB = {
 };
 
 
-function rememberMyFilms() {	
+function rememberMyFilms() {
 	for (let i = 0; i < 2; i++) {
 		const a = prompt('Последний просмотренный фильм:', ''),
 			b = prompt('На сколько оцените этот фильм?', '');
-
 		if (a != null && b != null && a != '' && b != '' && a.length < 50) {
 			personalMovieDB.movies[a] = b;
 			console.log('done!');
@@ -34,16 +33,43 @@ function rememberMyFilms() {
 		}
 	}
 }
-rememberMyFilms();
+// rememberMyFilms();
 
-if (personalMovieDB.count < 10) {
-	console.log('Просмотрено довольно мало фильмов!');
-} else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
-	console.log('Вы классический зритель!');
-} else if (personalMovieDB.count >= 30) {
-	console.log('Вы киноман!');
-} else {
-	console.log('Произошла ошибка');
+
+
+function detectPersonalLevel() {
+	if (personalMovieDB.count < 10) {
+		console.log('Просмотрено довольно мало фильмов!');
+	} else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
+		console.log('Вы классический зритель!');
+	} else if (personalMovieDB.count >= 30) {
+		console.log('Вы киноман!');
+	} else {
+		console.log('Произошла ошибка');
+	}
 }
+// detectPersonalLevel();
 
-console.log(personalMovieDB);
+function writeYourGenres() {
+	for (let i = 1; i <= 3; i++) {
+		let genre = prompt(`Важ любимый жанр под номером: ${i}`, '');
+		if (genre != null && genre != '') {
+			personalMovieDB.genres[i - 1] = genre;
+		} else {
+			console.log('error!');
+			i--;
+		}
+	}
+}
+writeYourGenres();
+
+
+
+function showMyDB(personalMovie) {
+	if (!personalMovie.privat) {
+		console.log(personalMovie);
+	} else {
+		console.log('something wrong, funcError "showMyDB"');
+	}
+}
+showMyDB(personalMovieDB);
