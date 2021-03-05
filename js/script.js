@@ -41,7 +41,7 @@ const personalMovieDB = {
 		if (!hidden) {
 			console.log(personalMovieDB);
 		} else {
-			console.log('something wrong, funcError "showMyDB"');
+			console.log('Data Base is privat');
 		}
 	},
 	writeYourGenres: function() {
@@ -53,6 +53,13 @@ const personalMovieDB = {
 				console.log('error!');
 				i--;
 			}
+		}
+	},
+	toggleVisibleMyDB: function() {
+		if (personalMovieDB.privat) {
+			personalMovieDB.privat = false;
+		} else {
+			personalMovieDB.privat = true;
 		}
 	}		
 };
